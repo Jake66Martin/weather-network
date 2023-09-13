@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+}
+
+header {
+    height: 10vh;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+}
+
+.flexpapa {
+    display: flex;
+}
+
+
+.flexchild-1 {
+    margin: 10px;
+    width: 25vw;
+    background-color: red;
+    height: 25vh;
+}
+
+.flexchild-2 {
+    margin: 10px;
+    width: 25vw;
+    background-color: orange;
+    height: 55vh;
+
+}
+
+.flexchild-3 {
+    margin: 10px;
+    width: 75vw;
+    background-color: green;
+    height: 40vh;
+}
+
+.flexchild-4 {
+    margin: 10px;
+    width: 75vw;
+    background-color: yellow;
+    height: 40vh
+}
