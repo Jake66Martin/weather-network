@@ -26,30 +26,43 @@ h1 {
 
 
 .flexchild-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 10px;
     width: 25vw;
-    background-color: red;
     height: 25vh;
+    border: 2px solid black;
+}
+
+.flexchild-1 h2 {
+    font-size: 30px;
+}
+
+form button {
+    width: 165px;
 }
 
 .flexchild-2 {
     margin: 10px;
     width: 25vw;
-    background-color: orange;
     height: 55vh;
+    border: 2px solid black;
 
 }
 
 .flexchild-3 {
     margin: 10px;
-    width: 75vw;
-    background-color: green;
+    width: 70vw;
     height: 40vh;
+    border: 2px solid black;
 }
 
 .flexchild-4 {
     margin: 10px;
-    width: 75vw;
-    background-color: yellow;
-    height: 40vh
+    width: 70vw;
+    height: 40vh;
+    border: 2px solid black;
+    
 }
