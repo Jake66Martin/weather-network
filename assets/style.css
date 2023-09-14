@@ -47,22 +47,22 @@ form button {
 .flexchild-2 {
     margin: 10px;
     width: 25vw;
-    height: 55vh;
+    height: 60vh;
     border: 2px solid black;
 
 }
 
 .flexchild-3 {
     margin: 10px;
-    width: 70vw;
-    height: 40vh;
+    width: 72vw;
+    height: 30vh;
     border: 2px solid black;
 }
 
 .flexchild-4 {
     margin: 10px;
-    width: 70vw;
-    height: 40vh;
+    width: 72vw;
+    height: 55vh;
     border: 2px solid black;
     
 }
