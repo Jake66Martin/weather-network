@@ -14,26 +14,27 @@
     </header>
     <div class="flexpapa">
         <div>
-            <div class="flexchild-1">
-                <h2>Search for a city:</h2>
+            <div id="searchBox">
+                <h2>Search for a city</h2>
                 <form>
+                    <label class = "label" for = "cityinput">City:</label><br>
                     <input type="text" id="cityinput"><br><br>
-                    <button>Search</button>
+                    <button id = "subBtn">Search</button>
                 </form>
             </div>
-            <div class="flexchild-2">
-                <p></p>
+            <div id="cityList">
             </div>
         </div>
         <div>
-            <div class="flexchild-3">
+            <div id="presentWeather">
                 <p></p>
             </div>
-            <div class="flexchild-4">
+            <div id="fiveDayForecast">
                 <p></p>
             </div>
         </div>
     </div>
+    <script src = "./assets/script.js"></script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@ h1 {
 }
 
 
-.flexchild-1 {
+#searchBox {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -36,15 +36,20 @@ h1 {
     border: 2px solid black;
 }
 
-.flexchild-1 h2 {
+.searchBox h2 {
     font-size: 30px;
+}
+
+.label {
+    display: block;
+    text-align: center;
 }
 
 form button {
     width: 165px;
 }
 
-.flexchild-2 {
+#cityList {
     margin: 10px;
     width: 25vw;
     height: 60vh;
@@ -52,14 +57,14 @@ form button {
 
 }
 
-.flexchild-3 {
+#presentWeather {
     margin: 10px;
     width: 72vw;
     height: 30vh;
     border: 2px solid black;
 }
 
-.flexchild-4 {
+#fiveDayForecast {
     margin: 10px;
     width: 72vw;
     height: 55vh;
