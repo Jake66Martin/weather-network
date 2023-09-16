@@ -3,6 +3,7 @@ var pastCities = document.querySelector("#cityList");
 var presentForecast = document.querySelector("#presentWeather");
 var futureWeather = document.querySelector("#fiveDayForecast");
 var button = document.querySelector("#subBtn");
+// var date = dayjs().format('DD/MM/YYYY');
 
 
 button.addEventListener("click", function(event) {
@@ -46,7 +47,7 @@ fetch(apiUrl)
       return response.json();
     })
     .then(function (data) {
-        
+        renderContent(data, city)
         console.log(data)
       
 
@@ -55,6 +56,24 @@ fetch(apiUrl)
 
     console.log(data)
 })};
+
+var renderContent = function (data) {
+    var buttons = document.createElement("button")
+    buttons.textContent = data.city.name
+    buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
+    pastCities.appendChild(buttons)
+   
+
+    presentForecast.textContent = "";
+    var heading = document.createElement("h2")
+    heading.textContent = data.city.name
+    heading.setAttribute("style", "align-text: center;")
+    presentForecast.appendChild(heading)
+
+
+
+
+}
 
 
 
