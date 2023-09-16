@@ -17,6 +17,8 @@ if (cityname) {
 
     cityNameInput.value = ""
 
+} else {
+    alert("Please enter a valid city name.")
 }
 
 });
@@ -44,7 +46,8 @@ fetch(apiUrl)
       return response.json();
     })
     .then(function (data) {
-        console.group(data)
+        
+        console.log(data)
       
 
     
