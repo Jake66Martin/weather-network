@@ -18,6 +18,7 @@ var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 var citynames = []
 
 
+
 button.addEventListener("click", function(event) {
 
 event.preventDefault();
@@ -70,26 +71,34 @@ fetch(apiUrl)
         renderHistoryButton(data)
         renderPresentContent(data)
         renderFutureContent(data)
-        // console.log(data)
+        
       })
 
-    // console.log(data)
+    
 })};
 
 var renderHistoryButton = function () {
     
     
-   
-   
-   
-    citynames.push(cityName)
-    
-   
 
-    var buttons = document.createElement("button")
-    buttons.textContent = cityName
-    buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
-    pastCities.appendChild(buttons)
+    if (citynames.includes(cityName)) {
+      alert(cityName + " is already present in the history list")
+    } else {
+        citynames.push(cityName)
+        var buttons = document.createElement("button")
+        buttons.textContent = cityName
+        buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
+        pastCities.appendChild(buttons)
+    }
+    
+    
+    
+    
+    
+ 
+        
+    
+    
     
 
 
@@ -99,7 +108,7 @@ var renderHistoryButton = function () {
 
 }
 
-console.log(citynames)
+
 
 var renderPresentContent = function (data) {
     
