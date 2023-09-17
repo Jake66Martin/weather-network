@@ -15,16 +15,20 @@ var date3 = dayjs().add(3, "day").format('(MM/DD/YYYY)')
 var date4 = dayjs().add(4, "day").format('(MM/DD/YYYY)')
 var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 
+var citynames = []
+
 
 button.addEventListener("click", function(event) {
 
 event.preventDefault();
 
  cityname = cityNameInput.value.trim();
+ cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
+ 
 
-if (cityname) {
-    fetchWeather(cityname);
+if (cityName) {
+    fetchWeather(cityName);
 
     cityNameInput.value = ""
 
@@ -63,28 +67,48 @@ fetch(apiUrl)
       return response.json();
     })
     .then(function (data) {
+        renderHistoryButton(data)
         renderPresentContent(data)
         renderFutureContent(data)
-        console.log(data)
+        // console.log(data)
       })
 
-    console.log(data)
+    // console.log(data)
 })};
+
+var renderHistoryButton = function () {
+    
+    
+   
+   
+   
+    citynames.push(cityName)
+    
+   
+
+    var buttons = document.createElement("button")
+    buttons.textContent = cityName
+    buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
+    pastCities.appendChild(buttons)
+    
+
+
+   
+
+    
+
+}
+
+console.log(citynames)
 
 var renderPresentContent = function (data) {
     
-    
-    var buttons = document.createElement("button")
-    buttons.textContent = data.city.name
-    buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
-    pastCities.appendChild(buttons)
-
     
 
     presentForecast.textContent = "";
     var heading = document.createElement("h2")
     var icon = document.createElement("img")
-    heading.textContent = data.city.name + " " + date
+    heading.textContent = cityName + " " + date
     heading.setAttribute("style", "text-align: center;")
     icon.setAttribute("src", "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png")
     icon.setAttribute("style", "display: block; margin-left: auto; margin-right: auto;")
