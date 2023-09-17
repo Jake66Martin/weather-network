@@ -71,5 +71,34 @@ form button {
     width: 72vw;
     height: 55vh;
     border: 2px solid black;
+    display: flex;
     
+}
+
+#tomorrow { 
+    border: 1px solid black;
+    width: 20%;
+    
+}
+
+#future1 {
+    border: 1px solid black;
+    width: 20%;
+    
+
+}
+
+#future2 {
+    border: 1px solid black;
+    width: 20%;
+}
+
+#future3 {
+    border: 1px solid black;
+    width: 20%;
+}
+
+#future4 {
+    border: 1px solid black;
+    width: 20%;
 }
