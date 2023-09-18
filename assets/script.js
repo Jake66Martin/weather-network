@@ -20,11 +20,6 @@ var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 var citynames = []
 
 
-var cityname = cityNameInput.value.trim();
-var cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
-
-
-
 button.addEventListener("click", function (event) {
 
     event.preventDefault();
@@ -98,11 +93,8 @@ var addToHistory = function () {
     if (citynames.includes(cityName)) {
         alert(cityName + " is already present in the history list.")
     } else {
-        
     
-
         citynames.push(cityName)
-        localStorage.clear()
         localStorage.setItem("savedcities", JSON.stringify(citynames))
     }
 }
@@ -275,9 +267,11 @@ window.addEventListener("load", function () {
 
     
         
-    savedCity = JSON.parse(localStorage.getItem("savedcities"))
     
-    renderHistoryButton()
+    
+    var savedCity = JSON.parse(localStorage.getItem("savedcities"))
+    citynames.push(savedCity)
+    
     
     
     
@@ -287,7 +281,7 @@ var renderHistoryButton = function() {
 
 }
 
-console.log(citynames)
-// console.log(savedCity)
+
+
 
 
