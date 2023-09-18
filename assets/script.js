@@ -96,7 +96,16 @@ var addToHistory = function () {
     
         citynames.push(cityName)
         localStorage.setItem("savedcities", JSON.stringify(citynames))
+        var historyButton = document.createElement("button")
+        historyButton.textContent = cityName
+        historyButton.setAttribute("style", "display: block; width: 100%; margin: 5px 0 0 5px;")
+        cityList.appendChild(historyButton)
+    
+        historyButton.addEventListener("click", function(){
+            
+        })
     }
+   
 }
 
 
@@ -269,8 +278,8 @@ window.addEventListener("load", function () {
         
     
     
-    var savedCity = JSON.parse(localStorage.getItem("savedcities"))
-    citynames.push(savedCity)
+    // var savedCity = JSON.parse(localStorage.getItem("savedcities"))
+    // citynames.push(savedCity)
     
     
     
