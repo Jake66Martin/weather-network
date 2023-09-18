@@ -25,8 +25,8 @@ button.addEventListener("click", function (event) {
 
     event.preventDefault();
 
-    var cityname = cityNameInput.value.trim();
-    var cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
+     cityname = cityNameInput.value.trim();
+     cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
 
 
