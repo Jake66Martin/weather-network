@@ -60,6 +60,8 @@ var fetchWeather = function (city) {
             var lon = data[0].lon
             var lat = data[0].lat
 
+            cityName = data[0].name
+
 
             var weather = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=bcc95f0b5af8c8ab3213f526460e43cb"
 
