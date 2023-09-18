@@ -17,7 +17,7 @@ var date3 = dayjs().add(3, "day").format('(MM/DD/YYYY)')
 var date4 = dayjs().add(4, "day").format('(MM/DD/YYYY)')
 var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 
-var citynames = []
+
 
 
 button.addEventListener("click", function (event) {
@@ -90,24 +90,51 @@ var addToHistory = function () {
 
 
 
-    if (citynames.includes(cityName)) {
-        alert(cityName + " is already present in the history list.")
-    } else {
+   
     
-        citynames.push(cityName)
-        localStorage.setItem("savedcities", JSON.stringify(citynames))
-        var historyButton = document.createElement("button")
-        historyButton.textContent = cityName
-        historyButton.setAttribute("style", "display: block; width: 100%; margin: 5px 0 0 5px;")
-        cityList.appendChild(historyButton)
-    
-        historyButton.addEventListener("click", function(){
-            
-        })
+        let cityList = JSON.parse(localStorage.getItem('cityList')) || [];
+        if (!cityList.map(city => city.toLowerCase()).includes((cityName).toLowerCase())) {
+          cityList.push(cityName);
+          localStorage.setItem('cityList', JSON.stringify(cityList));
+          var buttons = document.createElement("button")
+          buttons.textContent = cityName
+          buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
+          buttons.addEventListener("click",function(){
+            console.log(this.textContent);
+            fetchWeather(this.textContent);
+          })
+          pastCities.appendChild(buttons)
+        }
+
     }
    
-}
 
+
+
+function createCityButton(cityName) {
+    var buttons = document.createElement("button");
+    buttons.textContent = cityName;
+    buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;");
+    buttons.addEventListener("click",function(){
+      console.log(cityName);
+      fetchWeather(cityName);
+    })
+    pastCities.appendChild(buttons);
+  }
+
+
+  function loadSavedCities() {
+    let cityList = JSON.parse(localStorage.getItem('cityList')) || [];
+    cityList.forEach(createCityButton);
+  }
+
+
+  window.onload = function() {
+    var cityList = JSON.parse(localStorage.getItem('cityList')) || [];
+    cityList.forEach(function(cityName) {
+        createCityButton(cityName);
+    });
+  };
 
 
 var renderPresentContent = function (data) {
