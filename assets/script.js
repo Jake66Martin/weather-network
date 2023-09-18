@@ -17,15 +17,16 @@ var date3 = dayjs().add(3, "day").format('(MM/DD/YYYY)')
 var date4 = dayjs().add(4, "day").format('(MM/DD/YYYY)')
 var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 
-
+var cityname = cityNameInput.value.trim();
+var cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
 
 button.addEventListener("click", function (event) {
 
     event.preventDefault();
 
-    cityname = cityNameInput.value.trim();
-    cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
+    var cityname = cityNameInput.value.trim();
+    var cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
 
 
