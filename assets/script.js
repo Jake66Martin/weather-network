@@ -19,8 +19,11 @@ var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 
 var citynames = []
 
+
 var cityname = cityNameInput.value.trim();
 var cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
+
+
 
 button.addEventListener("click", function (event) {
 
@@ -71,7 +74,7 @@ var fetchWeather = function (city) {
                     return response.json();
                 })
                 .then(function (data) {
-                    renderHistoryButton(data)
+                    addToHistory(data)
                     renderPresentContent(data)
                     renderFutureContent(data)
 
@@ -83,35 +86,25 @@ var fetchWeather = function (city) {
         })
 };
 
-var renderHistoryButton = function () {
+
+
+
+
+
+var addToHistory = function () {
 
 
 
     if (citynames.includes(cityName)) {
         alert(cityName + " is already present in the history list.")
     } else {
+        
+    
 
         citynames.push(cityName)
-        localStorage.setItem(cityName, cityName)
-        var buttons = document.createElement("button")
-        buttons.textContent = cityName
-        buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
-        pastCities.appendChild(buttons)
+        localStorage.clear()
+        localStorage.setItem("savedcities", JSON.stringify(citynames))
     }
-
-
-
-
-
-    // for (var i = 0; i < citynames.length; i++) {
-    //     pastCities.textContent = ""
-    //     localStorage.getItem(cityName)
-    //     var historyButton = document.createElement("button")
-    //     historyButton.textContent = cityName
-    //        historyButton.setAttribute("style", "display: block; width: 100%; margin: 5px;")
-    //     pastCities.appendChild(historyButton)
-    // }
-
 }
 
 
@@ -277,16 +270,24 @@ var renderFutureContent = function (data) {
 
 }
 
+
 window.addEventListener("load", function () {
 
-    pastCities.textContent = ""
-    var historyButton = document.createElement("button")
-    historyButton.textContent = cityName
-    historyButton.setAttribute("style", "display: block; width: 100%; margin: 5px;")
-    pastCities.appendChild(historyButton)
-    localStorage.getItem(cityName)
+    
+        
+    savedCity = JSON.parse(localStorage.getItem("savedcities"))
+    
+    renderHistoryButton()
+    
+    
+    
 })
 
+var renderHistoryButton = function() {
 
+}
+
+console.log(citynames)
+// console.log(savedCity)
 
 
