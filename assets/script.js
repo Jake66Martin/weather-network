@@ -29,7 +29,7 @@ if (cityname) {
 
 var fetchWeather = function(city) {
 
-var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=bcc95f0b5af8c8ab3213f526460e43cb";
+var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=bcc95f0b5af8c8ab3213f526460e43cb";
 
 fetch(apiUrl)
     .then(function (response) {
@@ -39,7 +39,7 @@ fetch(apiUrl)
       var lon = data[0].lon
       var lat = data[0].lat
 
-      var weather = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=bcc95f0b5af8c8ab3213f526460e43cb"
+      var weather = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=bcc95f0b5af8c8ab3213f526460e43cb"
 
       fetch(weather)
     .then(function (response) {
