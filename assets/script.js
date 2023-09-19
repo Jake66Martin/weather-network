@@ -60,10 +60,12 @@ var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit
             }})
         .then(function (data) {
 
-            var lon = data[0].lon
-            var lat = data[0].lat
+            var lon = data[0].lon;
+            var lat = data[0].lat;
+            
+            cityName = data[0].name;
 
-      var weather = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=bcc95f0b5af8c8ab3213f526460e43cb"
+            var weather = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=bcc95f0b5af8c8ab3213f526460e43cb"
 
             fetch(weather, {
                 method: "GET"
