@@ -1,3 +1,9 @@
+:root {
+--border-big-black: 2px solid black;
+--border-small-black: 1px solid black;
+--width-20: 20%;
+}
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -33,7 +39,7 @@ h1 {
     margin: 10px;
     width: 25vw;
     height: 25vh;
-    border: 2px solid black;
+    border: var(--border-big-black);
 }
 
 .searchBox h2 {
@@ -53,7 +59,9 @@ form button {
     margin: 10px;
     width: 25vw;
     height: 60vh;
-    border: 2px solid black;
+    border: var(--border-big-black);
+    padding: 0 10px 0 0;
+    text-align: center;
 
 }
 
@@ -61,13 +69,42 @@ form button {
     margin: 10px;
     width: 72vw;
     height: 30vh;
-    border: 2px solid black;
+    border: var(--border-big-black)
 }
 
 #fiveDayForecast {
     margin: 10px;
     width: 72vw;
     height: 55vh;
-    border: 2px solid black;
+    border: var(--border-big-black);
+    display: flex;
     
+}
+
+#tomorrow { 
+    border: var(--border-small-black);
+    width: var(--width-20);
+    
+}
+
+#future1 {
+    border: var(--border-small-black);
+    width: var(--width-20);
+    
+
+}
+
+#future2 {
+    border: var(--border-small-black);
+    width: var(--width-20);
+}
+
+#future3 {
+    border: var(--border-small-black);
+    width: var(--width-20);
+}
+
+#future4 {
+    border: var(--border-small-black);
+    width: var(--width-20);
 }
