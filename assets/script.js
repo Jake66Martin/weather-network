@@ -25,8 +25,8 @@ button.addEventListener("click", function (event) {
 
     event.preventDefault();
 
-     cityname = cityNameInput.value.trim();
-     cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
+    cityname = cityNameInput.value.trim();
+    cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
 
 
@@ -49,39 +49,41 @@ var fetchWeather = function (city) {
 
     var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=bcc95f0b5af8c8ab3213f526460e43cb";
 
-    fetch(apiUrl)
+    fetch(apiUrl, {
+        method: "GET"
+    })
         .then(function (response) {
+            if (response.ok){
             return response.json();
-        })
+            }})
         .then(function (data) {
-
-
 
             var lon = data[0].lon
             var lat = data[0].lat
 
             cityName = data[0].name
 
-
             var weather = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=metric&appid=bcc95f0b5af8c8ab3213f526460e43cb"
 
+            fetch(weather, {
+                method: "GET"
+            })
 
-
-            fetch(weather)
                 .then(function (response) {
+                    if (response.ok) {
                     return response.json();
-                })
+                      }})
                 .then(function (data) {
                     addToHistory(data)
                     renderPresentContent(data)
                     renderFutureContent(data)
+                  })
+                  
 
 
-
-                })
-
-
-        })
+        }).catch(error => {
+            alert("Error: " + response)
+          })
 };
 
 
@@ -93,24 +95,24 @@ var addToHistory = function () {
 
 
 
-   
-    
-        let cityList = JSON.parse(localStorage.getItem('cityList')) || [];
-        if (!cityList.map(city => city.toLowerCase()).includes((cityName).toLowerCase())) {
-          cityList.push(cityName);
-          localStorage.setItem('cityList', JSON.stringify(cityList));
-          var buttons = document.createElement("button")
-          buttons.textContent = cityName
-          buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
-          buttons.addEventListener("click",function(){
+
+
+    let cityList = JSON.parse(localStorage.getItem('cityList')) || [];
+    if (!cityList.map(city => city.toLowerCase()).includes((cityName).toLowerCase())) {
+        cityList.push(cityName);
+        localStorage.setItem('cityList', JSON.stringify(cityList));
+        var buttons = document.createElement("button")
+        buttons.textContent = cityName
+        buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;")
+        buttons.addEventListener("click", function () {
             console.log(this.textContent);
             fetchWeather(this.textContent);
-          })
-          pastCities.appendChild(buttons)
-        }
-
+        })
+        pastCities.appendChild(buttons)
     }
-   
+
+}
+
 
 
 
@@ -118,26 +120,26 @@ function createCityButton(cityName) {
     var buttons = document.createElement("button");
     buttons.textContent = cityName;
     buttons.setAttribute("style", "display: block; width: 100%; margin: 5px;");
-    buttons.addEventListener("click",function(){
-      console.log(cityName);
-      fetchWeather(cityName);
+    buttons.addEventListener("click", function () {
+        console.log(cityName);
+        fetchWeather(cityName);
     })
     pastCities.appendChild(buttons);
-  }
+}
 
 
-  function loadSavedCities() {
+function loadSavedCities() {
     let cityList = JSON.parse(localStorage.getItem('cityList')) || [];
     cityList.forEach(createCityButton);
-  }
+}
 
 
-  window.onload = function() {
+window.onload = function () {
     var cityList = JSON.parse(localStorage.getItem('cityList')) || [];
-    cityList.forEach(function(cityName) {
+    cityList.forEach(function (cityName) {
         createCityButton(cityName);
     });
-  };
+};
 
 
 var renderPresentContent = function (data) {
@@ -174,9 +176,9 @@ var renderPresentContent = function (data) {
     humid.textContent = "Humidity: " + data.list[0].main.humidity + "%"
     presentForecast.appendChild(humid)
 
-    temp.setAttribute("style", "padding: 15px; text-align: center;")
-    wind.setAttribute("style", "padding: 15px; text-align: center;")
-    humid.setAttribute("style", "padding: 15px; text-align: center;")
+    temp.setAttribute("style", "padding: 10px; text-align: center;")
+    wind.setAttribute("style", "padding: 10px; text-align: center;")
+    humid.setAttribute("style", "padding: 10px; text-align: center;")
 
 
 }
@@ -206,9 +208,9 @@ var renderFutureContent = function (data) {
     var humid1 = document.createElement("p")
     humid1.textContent = "Humidity: " + data.list[10].main.humidity + "%"
     tomorrow.appendChild(humid1)
-    temp1.setAttribute("style", "padding: 40px; text-align: center;")
-    wind1.setAttribute("style", "padding: 40px; text-align: center;")
-    humid1.setAttribute("style", "padding: 40px; text-align: center;")
+    temp1.setAttribute("style", "padding: 25px; text-align: center;")
+    wind1.setAttribute("style", "padding: 25px; text-align: center;")
+    humid1.setAttribute("style", "padding: 25px; text-align: center;")
 
 
     var d19 = document.createElement("h2")
@@ -228,9 +230,9 @@ var renderFutureContent = function (data) {
     var humid2 = document.createElement("p")
     humid2.textContent = "Humidity: " + data.list[18].main.humidity + "%"
     future1.appendChild(humid2)
-    temp2.setAttribute("style", "padding: 40px; text-align: center;")
-    wind2.setAttribute("style", "padding: 40px; text-align: center;")
-    humid2.setAttribute("style", "padding: 40px; text-align: center;")
+    temp2.setAttribute("style", "padding: 25px; text-align: center;")
+    wind2.setAttribute("style", "padding: 25px; text-align: center;")
+    humid2.setAttribute("style", "padding: 25px; text-align: center;")
 
 
     var d20 = document.createElement("h2")
@@ -250,9 +252,9 @@ var renderFutureContent = function (data) {
     var humid3 = document.createElement("p")
     humid3.textContent = "Humidity: " + data.list[26].main.humidity + "%"
     future2.appendChild(humid3)
-    temp3.setAttribute("style", "padding: 40px; text-align: center;")
-    wind3.setAttribute("style", "padding: 40px; text-align: center;")
-    humid3.setAttribute("style", "padding: 40px; text-align: center;")
+    temp3.setAttribute("style", "padding: 25px; text-align: center;")
+    wind3.setAttribute("style", "padding: 25px; text-align: center;")
+    humid3.setAttribute("style", "padding: 25px; text-align: center;")
 
 
     var d21 = document.createElement("h2")
@@ -272,9 +274,9 @@ var renderFutureContent = function (data) {
     var humid4 = document.createElement("p")
     humid4.textContent = "Humidity: " + data.list[34].main.humidity + "%"
     future3.appendChild(humid4)
-    temp4.setAttribute("style", "padding: 40px; text-align: center;")
-    wind4.setAttribute("style", "padding: 40px; text-align: center;")
-    humid4.setAttribute("style", "padding: 40px; text-align: center;")
+    temp4.setAttribute("style", "padding: 25px; text-align: center;")
+    wind4.setAttribute("style", "padding: 25px; text-align: center;")
+    humid4.setAttribute("style", "padding: 25px; text-align: center;")
 
 
     var d22 = document.createElement("h2")
@@ -294,31 +296,14 @@ var renderFutureContent = function (data) {
     var humid5 = document.createElement("p")
     humid5.textContent = "Humidity: " + data.list[39].main.humidity + "%"
     future4.appendChild(humid5)
-    temp5.setAttribute("style", "padding: 40px; text-align: center;")
-    wind5.setAttribute("style", "padding: 40px; text-align: center;")
-    humid5.setAttribute("style", "padding: 40px; text-align: center;")
+    temp5.setAttribute("style", "padding: 25px; text-align: center;")
+    wind5.setAttribute("style", "padding: 25px; text-align: center;")
+    humid5.setAttribute("style", "padding: 25px; text-align: center;")
 
 
 }
 
 
-window.addEventListener("load", function () {
-
-    
-        
-    
-    
-    // var savedCity = JSON.parse(localStorage.getItem("savedcities"))
-    // citynames.push(savedCity)
-    
-    
-    
-    
-})
-
-var renderHistoryButton = function() {
-
-}
 
 
 
