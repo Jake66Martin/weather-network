@@ -20,7 +20,9 @@ var date5 = dayjs().add(5, "day").format('(MM/DD/YYYY)')
 var cityname = cityNameInput.value.trim();
 var cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
+// Above are all my global variables used throughout my javascript code
 
+//This function below is the event listener that initiates the entire process of weather retreival
 button.addEventListener("click", function (event) {
 
     event.preventDefault();
@@ -29,7 +31,7 @@ button.addEventListener("click", function (event) {
     cityName = cityname.charAt(0).toUpperCase() + cityname.slice(1);
 
 
-
+//If the string contains data, pass it through fetch. If not, throw up alert.
     if (cityName) {
         fetchWeather(cityName);
 
@@ -44,7 +46,7 @@ button.addEventListener("click", function (event) {
 
 
 
-
+//The fetch function that first retrieves a city, with another fetch method inside that retrieves latitude and longitude data.
 var fetchWeather = function (city) {
 
     var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=bcc95f0b5af8c8ab3213f526460e43cb";
@@ -78,11 +80,9 @@ var fetchWeather = function (city) {
                     renderPresentContent(data)
                     renderFutureContent(data)
                   })
-                  
-
-
-        }).catch(error => {
-            alert("Error: " + response)
+                })
+                .catch(error => {
+            alert("Error: " + error + " Must enter a valid city name.")
           })
 };
 
@@ -90,7 +90,7 @@ var fetchWeather = function (city) {
 
 
 
-
+//This function adds the input data to the local storage aswell as appending buttons that have event listeners attached to rerender weather data pertaining to their name
 var addToHistory = function () {
 
 
@@ -115,7 +115,7 @@ var addToHistory = function () {
 
 
 
-
+//This function creates buttons from the data that is retrieved from local storage
 function createCityButton(cityName) {
     var buttons = document.createElement("button");
     buttons.textContent = cityName;
@@ -128,12 +128,9 @@ function createCityButton(cityName) {
 }
 
 
-function loadSavedCities() {
-    let cityList = JSON.parse(localStorage.getItem('cityList')) || [];
-    cityList.forEach(createCityButton);
-}
 
 
+//On page load, this function retrieves the stored data and triggers the create city button function
 window.onload = function () {
     var cityList = JSON.parse(localStorage.getItem('cityList')) || [];
     cityList.forEach(function (cityName) {
@@ -142,6 +139,7 @@ window.onload = function () {
 };
 
 
+// This function renders the present weather data on the screen
 var renderPresentContent = function (data) {
 
 
@@ -183,6 +181,8 @@ var renderPresentContent = function (data) {
 
 }
 
+
+//This function redners future weather data on the screen
 var renderFutureContent = function (data) {
 
     tomorrow.textContent = ""
